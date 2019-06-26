@@ -1,0 +1,64 @@
+PROBLEM DEFINITION
+- A complete website for fabrikam company to be hosted on Amazon cloud/Google Cloud platform where the potential 
+  customer of the company can see their product and share their shopping experiance on web. Also all the employee are 
+  allowed to access Feedback Management System and Leave Management System.  
+
+FUNCTIONAL REQUIREMENTS.
+	- Create cloud environment for Fabrikam (multinational company)
+	- Customer/Admin can login/register
+	- Potential Customer can see the product and order from the website
+	- Customer can share their shopping experiance
+	- Admin can update, delete and add the products
+	- Admin can update, delete or add the EMployee/Customer details	  
+	- All the employee can see the feedback
+	- All the employee are allowed to see the Leaves available
+	- All the employee can for leave
+	- Manager (also an employee) will allowed to approve or not approve the leave.
+
+NON-FUNCTIONAL REQUIREMENTS
+	- Security Features
+	- Robustness of the application
+	- Performance of the application
+	- Concurrency and Capacity
+	- Reliablity
+	- Usability
+	- Documentation
+	- Maintainability
+
+
+
+
+
+
+
+
+
+
+--------------------------------
+var express = require('express');
+var app = express();
+
+
+//Reusable controllers
+var customerController=function (req, res) {
+  console.log("CAlling rest api");
+  var customers=[
+            {firstName:'Ravi',lastName:'Tambade',age:43},
+            {firstName:'Prashant',lastName:'Karhale',age:43},
+            {firstName:'Rohit',lastName:'Puranik',age:28},
+            {firstName:'Shiv',lastName:'Kumar',age:25},
+            {firstName:'Manoj',lastName:'Pande',age:23}
+      ];
+  res.send(customers);
+};
+
+// setting router to map requests  with controllers
+
+app.get('/customers',customerController );
+
+var server = app.listen(8088, function () {
+  var host = server.address().address
+  var port = server.address().port
+
+  console.log("Example app listening at http://localhost:8088", host, port)
+})
